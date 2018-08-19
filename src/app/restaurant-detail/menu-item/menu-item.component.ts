@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MenuItem} from "./menu-item.model";
+import {MenuItem} from './menu-item.model';
 
 @Component({
   selector: 'mt-menu-item',
@@ -13,7 +13,7 @@ export class MenuItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  emitAddEvent(){
-    this.add.emit(this.menuItem)
+  emitAddEvent() {
+    this.add.emit(this.menuItem);
   }
 }
