@@ -382,6 +382,39 @@
         }
       ],
       "id": 1
+    },
+    {
+      "address": "Avenida 3",
+      "number": "23",
+      "optionalAddress": "casa",
+      "paymentOptions": "MON",
+      "orderItems": [
+        {
+          "quantity": 1
+        },
+        {
+          "quantity": 1
+        }
+      ],
+      "id": 2
+    },
+    {
+      "address": "outra rua",
+      "number": "444",
+      "optionalAddress": "casa",
+      "paymentOptions": "DEB",
+      "orderItems": [
+        {
+          "quantity": 1
+        },
+        {
+          "quantity": 1
+        },
+        {
+          "quantity": 1
+        }
+      ],
+      "id": 3
     }
   ]
 }
