@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RadioOption} from "../../shared/radio/radio-option.model";
 import {OrderService} from "../order.service";
 import {Router} from "@angular/router";
@@ -35,7 +35,18 @@ export class OrderFormGroupComponent implements OnInit {
       number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
-    })
+    }, {validator: OrderFormGroupComponent.equalsTo })
+  }
+  static equalsTo(group: AbstractControl):{ [key: string]: boolean }{
+     const email = group.get('email')
+     const emailConfirmation = group.get('emailConfirmation')
+     if( !email || !emailConfirmation ){
+       return undefined
+     }
+     if( email.value !== emailConfirmation.value ){
+       return {emailsNotMatch: true}
+     }
+     return undefined
   }
   itemsValue(): number{
     return this.orderService.itemsValue()
