@@ -8,11 +8,12 @@ import {InputFormControlComponent} from "./input-form-control/input-form-control
 import {ShoppingCartService} from "../restaurant-detail/shopping-cart/shopping-cart.service";
 import {RestaurantsService} from "../restaurants/restaurant/restaurants.service";
 import {OrderService} from "../order/order.service";
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 @NgModule({
-  declarations: [InputComponent, RadioComponent, RatingComponent, InputFormControlComponent],
+  declarations: [InputComponent, RadioComponent, RatingComponent, InputFormControlComponent, SnackbarComponent],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [  InputComponent, RadioComponent, RatingComponent, InputFormControlComponent,
+  exports: [  InputComponent, RadioComponent, RatingComponent, InputFormControlComponent, SnackbarComponent,
               CommonModule, FormsModule, ReactiveFormsModule
             ],
 })
