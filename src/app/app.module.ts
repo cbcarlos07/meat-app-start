@@ -24,6 +24,7 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 
 import {SharedModule} from "./shared/shared.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 
@@ -41,6 +42,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MenuItemComponent,
     ReviewsComponent,
     OrderSumaryComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
