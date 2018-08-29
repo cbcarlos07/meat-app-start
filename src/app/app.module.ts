@@ -23,7 +23,6 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 
 
 import {SharedModule} from "./shared/shared.module";
-import {OrderModule} from "./order/order.module";
 import {CoreModule} from "./core/core.module";
 
 
@@ -42,14 +41,12 @@ import {CoreModule} from "./core/core.module";
     MenuItemComponent,
     ReviewsComponent,
     OrderSumaryComponent,
-
-
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    SharedModule,
-    OrderModule,
+    SharedModule.forRoot(),
+
     CoreModule,
     RouterModule.forRoot( ROUTES ),
 

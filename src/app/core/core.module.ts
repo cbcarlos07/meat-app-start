@@ -3,6 +3,7 @@ import {ShoppingCartService} from "../restaurant-detail/shopping-cart/shopping-c
 import {RestaurantsService} from "../restaurants/restaurant/restaurants.service";
 import {OrderService} from "../order/order.service";
 
+
 @NgModule({
   providers: [ShoppingCartService, RestaurantsService, OrderService]
 })
