@@ -23,7 +23,6 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 
 
 import {SharedModule} from "./shared/shared.module";
-import {CoreModule} from "./core/core.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
