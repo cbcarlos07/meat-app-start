@@ -7,7 +7,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {OrderFormGroupComponent} from "./order-form-group/order-form-group.component";
 
 const ROUTES: Routes = [
-  {path: '', component: OrderComponent}
+  {path: '', component: OrderFormGroupComponent}
 ]
 
 @NgModule({
