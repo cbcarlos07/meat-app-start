@@ -3,8 +3,6 @@ import {User, users} from "./users";
 
 export const handleAuthentication = ( req: Request, resp: Response )=>{
     const user: User = req.body
-    console.log(user)
-    console.log(isValid(user))
     if(isValid(user)){
       const dbUser: User = users[user.email]
       resp.json({name: dbUser.name, email: dbUser.email})
