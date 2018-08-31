@@ -3,19 +3,20 @@ import {User, users} from "./users";
 
 export const handleAuthentication = ( req: Request, resp: Response )=>{
     const user: User = req.body
-    console.log(req.body)
+    console.log(user)
+    console.log(isValid(user))
     if(isValid(user)){
-      const dbUser: User = user[user.email]
+      const dbUser: User = users[user.email]
       resp.json({name: dbUser.name, email: dbUser.email})
     }else{
       resp.status(403).json({message: 'Dados inválidos'})
     }
 }
 function  isValid(user: User): boolean {
+  console.log( 'isValid ' )
   if(!user){
     return false
   }
-
   const dbUser = users[user.email]
-  return dbUser != undefined && dbUser.matches(user)
+  return dbUser !== undefined && dbUser.matches( user )
 }
