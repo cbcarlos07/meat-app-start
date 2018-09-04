@@ -370,5 +370,21 @@
       "restaurantId": "tasty-treats"
     }
   ],
-  "orders": []
+  "orders": [
+    {
+      "name": "Juliana",
+      "email": "juliana@gmail.com",
+      "emailConfirmation": "juliana@gmail.com",
+      "address": "Avenida",
+      "number": "12",
+      "optionalAddress": "x",
+      "paymentOption": "MON",
+      "orderItems": [
+        {
+          "quantity": 1
+        }
+      ],
+      "id": 1
+    }
+  ]
 }
