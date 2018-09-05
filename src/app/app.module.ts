@@ -3,7 +3,7 @@ import {LOCALE_ID, NgModule} from '@angular/core';
 
 import {PreloadAllModules, RouterModule} from '@angular/router';
 
-import { ROUTES } from "./app.routes";
+import { ROUTES } from './app.routes';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,12 +22,13 @@ import { ReviewsComponent } from './restaurant-detail/reviews/reviews.component'
 import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 
 
-import {SharedModule} from "./shared/shared.module";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SharedModule} from './shared/shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
-import {HttpClientModule} from "@angular/common/http";
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
+import { UserDetailComponent } from './header/user-detail/user-detail.component';
 
 
 
@@ -47,6 +48,7 @@ import { LoginComponent } from './security/login/login.component';
     OrderSumaryComponent,
     NotFoundComponent,
     LoginComponent,
+    UserDetailComponent,
   ],
   imports: [
     BrowserModule,
