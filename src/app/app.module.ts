@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule, ErrorHandler} from '@angular/core';
 
 import {PreloadAllModules, RouterModule} from '@angular/router';
 
@@ -30,6 +30,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
 import { LeaveOrderGuard } from './order/leave-order.guard';
+import { ApplicationErrorHandler } from './app.error-handler';
 
 
 
@@ -60,7 +61,8 @@ import { LeaveOrderGuard } from './order/leave-order.guard';
 
   ],
   //providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: LOCALE_ID, useValue: 'pt-BR'}],
-  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'},
+                {provide: ErrorHandler, useClass: ApplicationErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
