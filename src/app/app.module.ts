@@ -60,7 +60,7 @@ import { LeaveOrderGuard } from './order/leave-order.guard';
 
   ],
   //providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: LOCALE_ID, useValue: 'pt-BR'}],
-  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'}, LeaveOrderGuard],
+  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

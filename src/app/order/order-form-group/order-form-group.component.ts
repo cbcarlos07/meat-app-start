@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RadioOption} from "../../shared/radio/radio-option.model";
-import {OrderService} from "../order.service";
-import {Router} from "@angular/router";
-import {CartItem} from "../../restaurant-detail/shopping-cart/cart-item.model";
-import {Order, OrderItem} from "../order.model";
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {RadioOption} from '../../shared/radio/radio-option.model';
+import {OrderService} from '../order.service';
+import {Router} from '@angular/router';
+import {CartItem} from '../../restaurant-detail/shopping-cart/cart-item.model';
+import {Order, OrderItem} from '../order.model';
 import 'rxjs/add/operator/do'
 @Component({
   selector: 'mt-order-form-group',
@@ -28,7 +28,7 @@ export class OrderFormGroupComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-  
+
     this.orderForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -39,13 +39,13 @@ export class OrderFormGroupComponent implements OnInit {
       paymentOption: this.formBuilder.control('', [Validators.required])
     }, {validator: OrderFormGroupComponent.equalsTo })
   }
-  static equalsTo(group: AbstractControl):{ [key: string]: boolean }{
+  static equalsTo(group: AbstractControl): { [key: string]: boolean }{
      const email = group.get('email')
      const emailConfirmation = group.get('emailConfirmation')
-     if( !email || !emailConfirmation ){
+     if ( !email || !emailConfirmation ){
        return undefined
      }
-     if( email.value !== emailConfirmation.value ){
+     if ( email.value !== emailConfirmation.value ){
        return {emailsNotMatch: true}
      }
      return undefined
@@ -70,7 +70,7 @@ export class OrderFormGroupComponent implements OnInit {
 
   isOrderCompleted(): boolean {
     console.log('isOrderCompleted - OrderFormGroupComponent')
-     return this.orderId !== undefined 
+     return this.orderId !== undefined
   }
 
   checkOrder(order: Order){
@@ -78,7 +78,7 @@ export class OrderFormGroupComponent implements OnInit {
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
 
     this.orderService.checkOrder(order)
-      .do((orderId: string)=>{
+      .do((orderId: string) => {
         this.orderId = orderId
       })
       .subscribe((orderId: string) => {
@@ -86,7 +86,7 @@ export class OrderFormGroupComponent implements OnInit {
         console.log(`Compra concluída: ${orderId} `)
         this.orderService.clear()
       })
-  
+
   }
 
 }
