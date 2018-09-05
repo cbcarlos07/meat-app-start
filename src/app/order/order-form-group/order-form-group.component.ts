@@ -5,7 +5,7 @@ import {OrderService} from "../order.service";
 import {Router} from "@angular/router";
 import {CartItem} from "../../restaurant-detail/shopping-cart/cart-item.model";
 import {Order, OrderItem} from "../order.model";
-
+import 'rxjs/add/operator/do'
 @Component({
   selector: 'mt-order-form-group',
   templateUrl: './order-form-group.component.html',
@@ -16,6 +16,7 @@ export class OrderFormGroupComponent implements OnInit {
   numberPattern = /^[0-9]*$/
   orderForm: FormGroup
   delivery = 8
+  orderId: string
 
   paymentOptions: RadioOption[] = [
     {label: 'Dinheiro', value: 'MON'},
@@ -27,6 +28,7 @@ export class OrderFormGroupComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+  
     this.orderForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -65,16 +67,26 @@ export class OrderFormGroupComponent implements OnInit {
   remove(item: CartItem){
     this.orderService.remove(item)
   }
+
+  isOrderCompleted(): boolean {
+    console.log('isOrderCompleted - OrderFormGroupComponent')
+     return this.orderId !== undefined 
+  }
+
   checkOrder(order: Order){
     order.orderItems = this.cartItems()
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
+
     this.orderService.checkOrder(order)
+      .do((orderId: string)=>{
+        this.orderId = orderId
+      })
       .subscribe((orderId: string) => {
         this.router.navigate(['/order-sumary'])
         console.log(`Compra concluída: ${orderId} `)
         this.orderService.clear()
       })
-    console.log( order )
+  
   }
 
 }

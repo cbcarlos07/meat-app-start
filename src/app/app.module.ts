@@ -29,6 +29,7 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
+import { LeaveOrderGuard } from './order/leave-order.guard';
 
 
 
@@ -59,7 +60,7 @@ import { UserDetailComponent } from './header/user-detail/user-detail.component'
 
   ],
   //providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: LOCALE_ID, useValue: 'pt-BR'}],
-  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'}],
+  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'}, LeaveOrderGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
