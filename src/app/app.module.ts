@@ -25,7 +25,9 @@ import { OrderSumaryComponent } from './order-sumary/order-sumary.component';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {HashLocationStrategy, LocationStrategy} from '@angular/common';
+import {HashLocationStrategy, LocationStrategy, registerLocaleData} from '@angular/common';
+import localePt from '@angular/common/locales/pt' 
+registerLocaleData(localePt, 'pt')
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './security/login/login.component';
 import { UserDetailComponent } from './header/user-detail/user-detail.component';
@@ -61,8 +63,12 @@ import { ApplicationErrorHandler } from './app.error-handler';
 
   ],
   //providers: [ {provide: LocationStrategy, useClass: HashLocationStrategy}, {provide: LOCALE_ID, useValue: 'pt-BR'}],
-  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'},
+/*  providers: [  {provide: LOCALE_ID, useValue: 'pt-BR'},
                 {provide: ErrorHandler, useClass: ApplicationErrorHandler}],
+                
+                */
+   providers: [  {provide: LOCALE_ID, useValue: 'pt'},
+               {provide: ErrorHandler, useClass: ApplicationErrorHandler}],           
   bootstrap: [AppComponent]
 })
 export class AppModule { }

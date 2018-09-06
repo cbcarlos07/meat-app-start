@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {RadioOption} from '../../shared/radio/radio-option.model';
 import {OrderService} from '../order.service';
 import {Router} from '@angular/router';
@@ -28,7 +28,7 @@ export class OrderFormGroupComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
+    /*
     this.orderForm = this.formBuilder.group({
       name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
       email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
@@ -38,7 +38,19 @@ export class OrderFormGroupComponent implements OnInit {
       optionalAddress: this.formBuilder.control(''),
       paymentOption: this.formBuilder.control('', [Validators.required])
     }, {validator: OrderFormGroupComponent.equalsTo })
-  }
+  }*/
+  this.orderForm = new FormGroup({
+    name: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(5)]
+    }),
+    email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+    emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+    address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+    number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
+    optionalAddress: this.formBuilder.control(''),
+    paymentOption: this.formBuilder.control('', [Validators.required])
+  }, {validators: [OrderFormGroupComponent.equalsTo], updateOn: 'blur' })
+}
   static equalsTo(group: AbstractControl): { [key: string]: boolean }{
      const email = group.get('email')
      const emailConfirmation = group.get('emailConfirmation')
