@@ -144,3 +144,7 @@ Dependências dos pacotes que devem ficar em package.json:
 ## Créditos
 
 Todas as imagens usadas na aplicação são pertencentes a freepik.com
+
+Dispara build de producao com css 
+    
+    ng build --prod --extract-css=false
