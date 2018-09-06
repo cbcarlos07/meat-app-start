@@ -3,12 +3,13 @@ import {Restaurant} from './restaurant/restaurant.model';
 import {RestaurantsService} from './restaurant/restaurants.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import 'rxjs/add/operator/switchMap'
+/* import 'rxjs/add/operator/switchMap'
 import 'rxjs/add/operator/debounceTime'
 import 'rxjs/add/operator/distinctUntilChanged'
 import 'rxjs/add/operator/catch'
-import 'rxjs/add/observable/from'
-import {Observable} from 'rxjs/Observable'
+import 'rxjs/add/observable/from' */
+import {Observable, from} from 'rxjs'
+import {switchMap, tap, debounceTime, distinctUntilChanged, catchError} from 'rxjs/operators'
 @Component({
   selector: 'mt-restaurants',
   templateUrl: './restaurants.component.html',
@@ -41,13 +42,17 @@ export class RestaurantsComponent implements OnInit {
         searchControl: this.searchControl
       })
       this.searchControl.valueChanges
-        .debounceTime(500)
-        .distinctUntilChanged()
-        .switchMap(searchTerm => this.restaurantService
-          .restaurants(searchTerm)
-          .catch(error => Observable.from([])))   // evita quebra da aplicação caso der erro
-        .subscribe(restaurants => this.restaurants = restaurants)
-
+          .pipe(
+            debounceTime(500),
+            distinctUntilChanged(),
+            switchMap(searchTerm => this.restaurantService
+              .restaurants(searchTerm)
+              .pipe(
+                catchError(error => from([])))   // evita quebra da aplicação caso der erro            
+              )
+              
+          ).subscribe(restaurants => this.restaurants = restaurants)
+        
       this.restaurantService.restaurants()
           .subscribe( restaurants => this.restaurants = restaurants )
   }
